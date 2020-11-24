@@ -54,14 +54,15 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   process convert: "jpg"
 
-  def filename
-    super.chomp(File.extname(super)) + ".jpg" if original_filename.present?
-  end
+  # def filename
+  #   binding.pry
+  #   super.chomp(File.extname(super)) + ".jpg" if original_filename.present?
+  # end
 
   process resize_to_limit: [200, 300]
 
   def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
+    "#{secure_token}.jpg" if original_filename.present?
   end
 
   protected
